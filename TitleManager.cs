@@ -31,12 +31,17 @@ public class TitleManager : MonoBehaviour
 
 	public void LoginButtonEvent()
 	{
-		Action action = () => {
-			userProfileModel = UserProfile.Get();
-		if (!string.IsNullOrEmpty(userProfileModel.user_id)) {
-			userID.text = "ID : " + userProfileModel.user_id;
-			}
-    	};
-	StartCoroutine(CommunicationManager.ConnectServer("registration", "", action));
+		UserProfileModel userProfileModel = UserProfile.Get();
+		if (string.IsNullOrEmpty(userProfileModel.user_id)) {
+			Action action = () => {
+				UnityEngine.Debug.Log("登録完了");
+			};
+			StartCoroutine(CommunicationManager.ConnectServer("registration", "", action));
+		} else {
+			Action action = () => {
+				//ログイン後の処理を記載
+		};
+		StartCoroutine(CommunicationManager.ConnectServer("login","&user_id=" + userProfileModel.user_id, action));
+		}
 	}
 }
