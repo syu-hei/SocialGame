@@ -10,7 +10,9 @@ public class ResponseObjects
     public int master_data_version;
 	public UserProfileModel user_profile;
     public UserLoginModel user_login;
+    public UserQuestModel[] user_quest;
     public MasterLoginItemModel[] master_login_item;
+    public MasterQuestModel[] master_quest;
 }
 
 public class CommunicationManager : MonoBehaviour
@@ -20,6 +22,7 @@ public class CommunicationManager : MonoBehaviour
 	private const string ERROR_MASTER_DATA_UPDATE = "1";
     private const string ERROR_DB_UPDATE = "2";
     private const string ERROR_INVALID_DATA = "3";
+    private const string ERROR_INVALID_SCHEDULE = "4";
 
     public static IEnumerator ConnectServer(string endpoint, string paramater, Action action = null)
 	{
@@ -52,6 +55,11 @@ public class CommunicationManager : MonoBehaviour
                         MasterLoginItem.Set(masterResponseObjects.master_login_item);
                     }
 
+                    if (masterResponseObjects.master_quest != null)
+                    {
+                        MasterQuest.Set(masterResponseObjects.master_quest);
+                    }
+
                     //マスターデータのバージョンはローカルに保存
                     PlayerPrefs.SetInt("master_data_version", masterResponseObjects.master_data_version);
                     break;
@@ -60,6 +68,9 @@ public class CommunicationManager : MonoBehaviour
 					break;
                 case ERROR_INVALID_DATA:
                     UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[不正なデータ]");
+                    break;
+                case ERROR_INVALID_SCHEDULE:
+                    UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[期間外]");
                     break;
                 default:
 					break;
@@ -78,8 +89,12 @@ public class CommunicationManager : MonoBehaviour
             user_login.Set(responseObjects.user_login);
             }
 
-        if (action != null) {
-				action();
+            if (responseObjects.user_quest != null) {
+                UserQuest.Set(responseObjects.user_quest);
+            }
+
+            if (action != null) {
+                action();
             }
         }
     }
