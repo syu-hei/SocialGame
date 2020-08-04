@@ -1,7 +1,23 @@
 using System;
 
+[Serializable]
+public class UserProfileModel
+{
+	public string user_id;
+	public string user_name;
+	public int crystal;
+	public int crystal_free;
+	public int friend_coin;
+	public int tutorial_progress;
+}
+
 public static class UserProfile
 {
+	public const int TUTORIAL_START = 0;
+	public const int TUTORIAL_QUEST = 10;
+	public const int TUTORIAL_GACHA = 20;
+	public const int TUTORIAL_FINISH = 999;
+
     public static void CreateTable()
 	{
 		string query = "create table if not exists user_profile (user_id text, user_name text, crystal int, crystal_free int, friend_coin int, tutorial_progress int, primary key(user_id))";
