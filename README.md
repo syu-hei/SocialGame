@@ -1,4 +1,5 @@
-# クエスト処理用スクリプト作成
-• master_quest tableとuser_quest tableの  
+# キャラクター用スクリプト作成
+• master_character tableとuser_character tableの  
 作成とレコード取得の処理  
-• クエスト開始時、終了時の設定
+• ユーザーが保有しているキャラクターリストを取得  
+• キャラクターの売却処理

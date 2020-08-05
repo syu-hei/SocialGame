@@ -11,8 +11,10 @@ public class ResponseObjects
 	public UserProfileModel user_profile;
     public UserLoginModel user_login;
     public UserQuestModel[] user_quest;
+    public UserCharacterModel[] user_character;
     public MasterLoginItemModel[] master_login_item;
     public MasterQuestModel[] master_quest;
+    public MasterCharacterModel[] master_character;
 }
 
 public class CommunicationManager : MonoBehaviour
@@ -60,6 +62,11 @@ public class CommunicationManager : MonoBehaviour
                         MasterQuest.Set(masterResponseObjects.master_quest);
                     }
 
+                    if (masterResponseObjects.master_character != null)
+                    {
+                        MasterCharacter.Set(masterResponseObjects.master_character);
+                    }
+
                     //マスターデータのバージョンはローカルに保存
                     PlayerPrefs.SetInt("master_data_version", masterResponseObjects.master_data_version);
                     break;
@@ -91,6 +98,10 @@ public class CommunicationManager : MonoBehaviour
 
             if (responseObjects.user_quest != null) {
                 UserQuest.Set(responseObjects.user_quest);
+            }
+
+            if (responseObjects.user_character != null) {
+                UserCharacter.Set(responseObjects.user_character);
             }
 
             if (action != null) {
