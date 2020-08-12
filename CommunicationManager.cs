@@ -15,6 +15,7 @@ public class ResponseObjects
     public MasterLoginItemModel[] master_login_item;
     public MasterQuestModel[] master_quest;
     public MasterCharacterModel[] master_character;
+    public MasterGachaModel[] master_gacha;
 }
 
 public class CommunicationManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class CommunicationManager : MonoBehaviour
     private const string ERROR_DB_UPDATE = "2";
     private const string ERROR_INVALID_DATA = "3";
     private const string ERROR_INVALID_SCHEDULE = "4";
+    private const string ERROR_COST_SHORTAGE = "5";
 
     public static IEnumerator ConnectServer(string endpoint, string paramater, Action action = null)
 	{
@@ -67,6 +69,11 @@ public class CommunicationManager : MonoBehaviour
                         MasterCharacter.Set(masterResponseObjects.master_character);
                     }
 
+                    if (masterResponseObjects.master_gacha != null)
+                    {
+                        MasterGacha.Set(masterResponseObjects.master_gacha);
+                    }
+
                     //マスターデータのバージョンはローカルに保存
                     PlayerPrefs.SetInt("master_data_version", masterResponseObjects.master_data_version);
                     break;
@@ -78,6 +85,9 @@ public class CommunicationManager : MonoBehaviour
                     break;
                 case ERROR_INVALID_SCHEDULE:
                     UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[期間外]");
+                    break;
+                case ERROR_COST_SCHEDULE:
+                    UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[アイテム不足]");
                     break;
                 default:
 					break;
@@ -96,11 +106,13 @@ public class CommunicationManager : MonoBehaviour
             user_login.Set(responseObjects.user_login);
             }
 
-            if (responseObjects.user_quest != null) {
+            if (responseObjects.user_quest != null)
+            {
                 UserQuest.Set(responseObjects.user_quest);
             }
 
-            if (responseObjects.user_character != null) {
+            if (responseObjects.user_character != null)
+            {
                 UserCharacter.Set(responseObjects.user_character);
             }
 
