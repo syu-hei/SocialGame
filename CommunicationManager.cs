@@ -16,6 +16,7 @@ public class ResponseObjects
     public MasterQuestModel[] master_quest;
     public MasterCharacterModel[] master_character;
     public MasterGachaModel[] master_gacha;
+    public MasterShopModel[] master_shop;
 }
 
 public class CommunicationManager : MonoBehaviour
@@ -72,6 +73,11 @@ public class CommunicationManager : MonoBehaviour
                     if (masterResponseObjects.master_gacha != null)
                     {
                         MasterGacha.Set(masterResponseObjects.master_gacha);
+                    }
+
+                    if (masterResponseObjects.master_shop != null)
+                    {
+                        MasterShop.Set(masterResponseObjects.master_shop);
                     }
 
                     //マスターデータのバージョンはローカルに保存
