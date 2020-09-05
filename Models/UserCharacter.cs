@@ -12,7 +12,7 @@ public static class UserCharacter
 	public static void CreateTable()
 	{
 		string query = "create table if not exists user_character (id int, character_id int, primary key(id))";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
@@ -20,7 +20,7 @@ public static class UserCharacter
 	{
 		//キャラクターが売却されてもデータが残り続けないように一度ドロップする
 		string dropQuery = "drop table if exists user_character";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		sqlDB.ExecuteQuery(dropQuery);
 
 		CreateTable();

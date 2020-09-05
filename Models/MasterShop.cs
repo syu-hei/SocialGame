@@ -14,13 +14,13 @@ public static class MasterShop
 	public static void CreateTable()
 	{
 		string query = "create table if not exists master_shop (shop_id text, amount int, cost int, primary key(shop_id))";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
     public static void Set(MasterShopModel[] master_shop_model_list)
 	{
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		foreach (MasterShopModel masterShopModel in master_shop_model_list) {
 			string query = "insert or replace into master_shop (shop_id, amount, cost) values(\"" +
 				masterShopModel.shop_id + "\", " +
@@ -34,7 +34,7 @@ public static class MasterShop
 	{
 		Dictionary<string, MasterShopModel> masterShopListModel = new Dictionary<string, MasterShopModel>();
 		string query = "select * from master_shop";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		DataTable dataTable = sqlDB.ExecuteQuery(query);
 
 		foreach (DataRow dr in dataTable.Rows) {

@@ -26,13 +26,13 @@ public static class MasterGacha
 	public static void CreateTable()
 	{
 		string query = "create table if not exists master_gacha (gacha_id int, banner_id text, cost_type int, cost_amount int, draw_count int, open_at text, close_at text, description text, primary key(gacha_id))";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
     public static void Set(MasterGachaModel[] master_gacha_model_list)
 	{
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		foreach (MasterGachaModel masterGachaModel in master_gacha_model_list) {
 			string query = "insert or replace into master_gacha (gacha_id, banner_id, cost_type, cost_amount, draw_count, open_at, close_at, description) values(" +
 				masterGachaModel.gacha_id + ", \"" +
@@ -50,7 +50,7 @@ public static class MasterGacha
 	{
 		Dictionary<int, MasterGachaModel> masterGachaListModel = new Dictionary<int, MasterGachaModel>();
 		string query = "select * from master_gacha";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		DataTable dataTable = sqlDB.ExecuteQuery(query);
 		foreach (DataRow dr in dataTable.Rows) {
 			MasterGachaModel masterGachaModel = new MasterGachaModel();

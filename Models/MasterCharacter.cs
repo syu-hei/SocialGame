@@ -17,13 +17,13 @@ public static class MasterCharacter
 	public static void CreateTable()
 	{
 		string query = "create table if not exists master_character (character_id int, asset_id text, character_name text, rarity int, type int, sell_point int, primary key(character_id))";
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
     public static void Set(MasterCharacterModel[] master_character_model_list)
 	{
-		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
 		foreach (MasterCharacterModel masterCharacterModel in master_character_model_list) {
 			string query = "insert or replace into master_character (character_id, asset_id, character_name, rarity, type, sell_point) values(" +
 				masterCharacterModel.character_id + ", \"" +
