@@ -12,6 +12,7 @@ public class ResponseObjects
     public UserLoginModel user_login;
     public UserQuestModel[] user_quest;
     public UserCharacterModel[] user_character;
+    public UserPresentModel[] user_present;
     public MasterLoginItemModel[] master_login_item;
     public MasterQuestModel[] master_quest;
     public MasterCharacterModel[] master_character;
@@ -120,6 +121,11 @@ public class CommunicationManager : MonoBehaviour
             if (responseObjects.user_character != null)
             {
                 UserCharacter.Set(responseObjects.user_character);
+            }
+
+            if (responseObjects.user_present != null)
+            {
+                UserPresent.Set(responseObjects.user_present);
             }
 
             if (action != null) {
