@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,15 +29,29 @@ public class PresentItem : MonoBehaviour
 
 		amountLabel.text = "x" + userPresentModel.item_count.ToString();
 		descriptionLabel.text = userPresentModel.description.ToString();
-		limitedLabel.text = "期限 : " + userPresentModel.limited_at.ToString() + "まで";
+		limitedLabel.text = userPresentModel.limited_at + "まで";
 	}
 
 	public void PresentButtonEvent()
 	{
 		Action action = () => {
-			//プレゼント獲得後のアクションを記述
+			GameObject presentManagerObject = GameObject.Find("PresentManager");
+			if (presentManagerObject == null) {
+				UnityEngine.Debug.LogError("PresentManagerが存在しません。");
+				return;
+			}
+			PresentManager presentManager = presentManagerObject.GetComponent<PresentManager>();
+			if (presentManager == null) {
+				UnityEngine.Debug.LogError("PresentManagerアタッチされていません。");
+				return;
+			}
+			presentManager.Dialog.SetActive(true);
 		};
 		UserProfileModel userProfileModel = UserProfile.Get();
+		if (string.IsNullOrEmpty(userProfileModel.user_id)) {
+			UnityEngine.Debug.LogError("TitleSceneを起動してユーザー登録を行ってください。");
+			return;
+		}
 		StartCoroutine(CommunicationManager.ConnectServer("present", "&user_id=" + userProfileModel.user_id + "&present_id=" + userPresentModel.present_id, action));
 	}
 }

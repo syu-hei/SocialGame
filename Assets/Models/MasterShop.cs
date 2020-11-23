@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -18,7 +18,7 @@ public static class MasterShop
 		sqlDB.ExecuteQuery(query);
 	}
 
-    public static void Set(MasterShopModel[] master_shop_model_list)
+	public static void Set(MasterShopModel[] master_shop_model_list)
 	{
 		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		foreach (MasterShopModel masterShopModel in master_shop_model_list) {

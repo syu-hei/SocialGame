@@ -8,11 +8,14 @@ public class TitleManager : MonoBehaviour
 	[SerializeField]
 	Text userID;
 
+	[SerializeField]
+	GameObject loginBonusDialog;
+
 	private UserProfileModel userProfileModel;
 
 	void Awake()
 	{
-		string DBPath = Application.persistentDataPath + "/game.db";
+		string DBPath = Application.persistentDataPath + "/Service.db";
 
 		if (!File.Exists(DBPath)) {
 			File.Create(DBPath);
@@ -20,10 +23,19 @@ public class TitleManager : MonoBehaviour
 
 		UserProfile.CreateTable();
 		UserLogin.CreateTable();
+		UserQuest.CreateTable();
+		UserCharacter.CreateTable();
+		UserPresent.CreateTable();
+		MasterLoginItem.CreateTable();
+		MasterQuest.CreateTable();
+		MasterCharacter.CreateTable();
+		MasterGacha.CreateTable();
+		MasterShop.CreateTable();
 	}
 
 	void Start()
 	{
+		loginBonusDialog.SetActive(false);
 
 		userProfileModel = UserProfile.Get();
 		if (!string.IsNullOrEmpty(userProfileModel.user_id)) {
@@ -40,6 +52,7 @@ public class TitleManager : MonoBehaviour
 			StartCoroutine(CommunicationManager.ConnectServer("registration", "", action));
 		} else {
 			Action action = () => {
+				loginBonusDialog.SetActive(true);
 			};
 			StartCoroutine(CommunicationManager.ConnectServer("login", "&user_id=" + userProfileModel.user_id, action));
 		}

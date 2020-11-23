@@ -1,11 +1,10 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-
-    [SerializeField]
+	[SerializeField]
 	Text tutorialText;
 
 	[SerializeField]

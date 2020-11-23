@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,10 +53,10 @@ public class GachaItem : MonoBehaviour
 	}
 
 	//ガチャをひくボタンをタップで呼ばれる関数
-	public void PressEvent() 
+	public void PressEvent()
 	{
-        Action action = () => {
-        	GameObject gachaManagerObject = GameObject.Find("GachaManager");
+		Action action = () => {
+			GameObject gachaManagerObject = GameObject.Find("GachaManager");
 			if (gachaManagerObject == null) {
 				UnityEngine.Debug.LogError("GachaManagerが存在しません。");
 				return;
@@ -75,5 +75,5 @@ public class GachaItem : MonoBehaviour
 			return;
 		}
 		StartCoroutine(CommunicationManager.ConnectServer("gacha", "&user_id=" + userProfileModel.user_id + "&gacha_id=" + masterGachaModel.gacha_id, action));
-    }
+	}
 }

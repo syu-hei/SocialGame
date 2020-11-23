@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -34,7 +34,7 @@ public class CharacterManager : MonoBehaviour
 		Dialog.SetActive(false);
 	}
 
-    public void CharacterListButtonEvent()
+	public void CharacterListButtonEvent()
 	{
 		UserProfileModel userProfileModel = UserProfile.Get();
 		if (string.IsNullOrEmpty(userProfileModel.user_id)) {

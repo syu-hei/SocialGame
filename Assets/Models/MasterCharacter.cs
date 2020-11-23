@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 
 [Serializable]
 public class MasterCharacterModel
@@ -21,7 +20,7 @@ public static class MasterCharacter
 		sqlDB.ExecuteQuery(query);
 	}
 
-    public static void Set(MasterCharacterModel[] master_character_model_list)
+	public static void Set(MasterCharacterModel[] master_character_model_list)
 	{
 		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		foreach (MasterCharacterModel masterCharacterModel in master_character_model_list) {

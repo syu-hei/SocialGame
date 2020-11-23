@@ -10,20 +10,30 @@ public class ResponseObjects
 	public int master_data_version;
 	public UserProfileModel user_profile;
 	public UserLoginModel user_login;
+	public UserQuestModel[] user_quest;
+	public UserCharacterModel[] user_character;
+	public UserPresentModel[] user_present;
+	public MasterLoginItemModel[] master_login_item;
+	public MasterQuestModel[] master_quest;
+	public MasterCharacterModel[] master_character;
+	public MasterGachaModel[] master_gacha;
+	public MasterShopModel[] master_shop;
 }
 
 public class CommunicationManager : MonoBehaviour
 {
 	//接続先のサーバーのアドレスを設定
-	const string URL = "http://127.0.0.1:8000";
+	const string URL = "https://docker-laravel-201120.herokuapp.com/";
 	private const string ERROR_MASTER_DATA_UPDATE = "1";
 	private const string ERROR_DB_UPDATE = "2";
 	private const string ERROR_INVALID_DATA = "3";
+	private const string ERROR_INVALID_SCHEDULE = "4";
+	private const string ERROR_COST_SHORTAGE = "5";
+	private const string ERROR_FORCE_UPDATE = "6";
 
 	public static IEnumerator ConnectServer(string endpoint, string paramater, Action action = null)
 	{
-        int masterDataVersion = PlayerPrefs.GetInt("master_data_version", 0);
-		UnityWebRequest unityWebRequest = UnityWebRequest.Get(URL + endpoint + "?client_master_version=" + masterDataVersion + paramater);
+		UnityWebRequest unityWebRequest = UnityWebRequest.Get(URL + endpoint + "?client_master_version=" + LocalDataManager.GetMasterDataVersion() + paramater);
 		yield return unityWebRequest.SendWebRequest();
 
 		if (!string.IsNullOrEmpty(unityWebRequest.error)) {
@@ -53,18 +63,51 @@ public class CommunicationManager : MonoBehaviour
 				case ERROR_INVALID_DATA:
 					UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[不正なデータ]");
 					break;
+				case ERROR_INVALID_SCHEDULE:
+					UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[期間外]");
+					break;
+				case ERROR_COST_SHORTAGE:
+					UnityEngine.Debug.LogError("サーバーでエラーが発生しました。[アイテム不足]");
+					break;
 				default:
 					break;
 			}
 		} else {
 			ResponseObjects responseObjects = JsonUtility.FromJson<ResponseObjects>(text);
 
+			if (responseObjects.master_data_version != 0) {
+				LocalDataManager.SetMasterDataVersion(responseObjects.master_data_version);
+			}
 			//SQLiteへ保存
 			if (!string.IsNullOrEmpty(responseObjects.user_profile.user_id)) {
 				UserProfile.Set(responseObjects.user_profile);
 			}
 			if (!string.IsNullOrEmpty(responseObjects.user_login.user_id)) {
 				UserLogin.Set(responseObjects.user_login);
+			}
+			if (responseObjects.user_quest != null) {
+				UserQuest.Set(responseObjects.user_quest);
+			}
+			if (responseObjects.user_character != null) {
+				UserCharacter.Set(responseObjects.user_character);
+			}
+			if (responseObjects.user_present != null) {
+				UserPresent.Set(responseObjects.user_present);
+			}
+			if (responseObjects.master_login_item != null) {
+				MasterLoginItem.Set(responseObjects.master_login_item);
+			}
+			if (responseObjects.master_quest != null) {
+				MasterQuest.Set(responseObjects.master_quest);
+			}
+			if (responseObjects.master_character != null) {
+				MasterCharacter.Set(responseObjects.master_character);
+			}
+			if (responseObjects.master_gacha != null) {
+				MasterGacha.Set(responseObjects.master_gacha);
+			}
+			if (responseObjects.master_shop != null) {
+				MasterShop.Set(responseObjects.master_shop);
 			}
 
 			if (action != null) {

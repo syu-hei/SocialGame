@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -17,7 +17,7 @@ public static class UserCharacter
 		sqlDB.ExecuteQuery(query);
 	}
 
-    public static void Set(UserCharacterModel[] user_character_model_list)
+	public static void Set(UserCharacterModel[] user_character_model_list)
 	{
 		//キャラクターが売却されてもデータが残り続けないように一度ドロップする
 		string dropQuery = "drop table if exists user_character";

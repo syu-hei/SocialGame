@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GachaResult : MonoBehaviour
@@ -21,11 +21,10 @@ public class GachaResult : MonoBehaviour
 	[SerializeField]
 	Image characterAsset;
 
-
-    void Start()
+	void Start()
     {
 		UserCharacterModel userCharacterModel = UserCharacter.GetLatestUserCharacter();
-        if (userCharacterModel == null) {
+		if (userCharacterModel == null) {
 			UnityEngine.Debug.LogError("キャラクターが存在しません。");
 			return;
 		}

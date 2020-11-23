@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -23,7 +23,7 @@ public static class UserPresent
 	public static void CreateTable()
 	{
 		string query = "create table if not exists user_present (present_id int, item_type int, item_count int, description text, limited_at text, primary key(present_id))";
-		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
@@ -31,7 +31,7 @@ public static class UserPresent
 	{
 		//プレゼントが取得されてもデータが残り続けないように一度ドロップする
 		string dropQuery = "drop table if exists user_present";
-		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		sqlDB.ExecuteQuery(dropQuery);
 
 		CreateTable();
@@ -52,7 +52,7 @@ public static class UserPresent
 		Dictionary<int, UserPresentModel> userPresentListModel = new Dictionary<int, UserPresentModel>();
 
 		string query = "select * from user_present";
-		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		DataTable dataTable = sqlDB.ExecuteQuery(query);
 
 		foreach (DataRow dr in dataTable.Rows) {

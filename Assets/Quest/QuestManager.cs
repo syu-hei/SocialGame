@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class QuestManager : MonoBehaviour
 {
-    [SerializeField]
+	[SerializeField]
 	GameObject questStartUI;
 
 	[SerializeField]

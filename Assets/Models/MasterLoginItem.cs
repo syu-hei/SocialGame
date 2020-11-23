@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 [Serializable]
 public class MasterLoginItemModel
@@ -17,10 +17,10 @@ public static class MasterLoginItem
 		FriendCoin = 3,
 	}
 
-    public static void CreateTable()
+	public static void CreateTable()
 	{
 		string query = "create table if not exists master_login_item (login_day int, item_type int, item_count int, primary key(login_day))";
-		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		sqlDB.ExecuteQuery(query);
 	}
 
@@ -31,7 +31,7 @@ public static class MasterLoginItem
 				masterLoginItemModel.login_day + ", " +
 				masterLoginItemModel.item_type + ", " +
 				masterLoginItemModel.item_count + ")";
-			SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+			SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 			sqlDB.ExecuteNonQuery(query);
 		}
 	}
@@ -40,7 +40,7 @@ public static class MasterLoginItem
 	{
 		MasterLoginItemModel masterLoginItemModel = new MasterLoginItemModel();
 		string query = "select * from master_login_item where login_day = " + login_day.ToString();
-		SqliteDatabase sqlDB = new SqliteDatabase("game.db");
+		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		DataTable dataTable = sqlDB.ExecuteQuery(query);
 		foreach (DataRow dr in dataTable.Rows) {
 			masterLoginItemModel.login_day = int.Parse(dr["login_day"].ToString());

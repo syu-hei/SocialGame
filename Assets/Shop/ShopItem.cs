@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +12,13 @@ public class ShopItem : MonoBehaviour
 
 	public MasterShopModel masterShopModel;
 
-    void Start()
+	void Start()
 	{
 		costLabel.text = masterShopModel.cost + " 円";
 		amountLabel.text = "× " + masterShopModel.amount;
 	}
 
-    public void ShopButtonEvent()
+	public void ShopButtonEvent()
 	{
 		UserProfileModel userProfileModel = UserProfile.Get();
 		if (string.IsNullOrEmpty(userProfileModel.user_id)) {

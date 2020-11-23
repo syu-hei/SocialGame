@@ -1,20 +1,19 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterItem : MonoBehaviour
 {
-
-    [SerializeField]
+	[SerializeField]
 	Image characterAsset;
 
 	[SerializeField]
 	Image typeAsset;
 
-    public UserCharacterModel userCharacterModel;
+	public UserCharacterModel userCharacterModel;
 	private MasterCharacterModel masterCharacterModel;
 
-    void Start()
+	void Start()
 	{
 		masterCharacterModel = MasterCharacter.GetMasterCharacter(userCharacterModel.character_id);
 		if (masterCharacterModel.character_id == 0) {

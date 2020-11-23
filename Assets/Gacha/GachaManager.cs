@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -14,17 +14,17 @@ public class GachaManager : MonoBehaviour
 	[SerializeField]
 	GameObject gachaItemPrefab;
 
-    [SerializeField]
+	[SerializeField]
 	public GameObject GachaResult;
 
-    private float contentsWidth = 400.0f;
+	private float contentsWidth = 400.0f;
 
 	void Start()
 	{
 		gachaItemPrefab.SetActive(false);
-        GachaResult.SetActive(false);
+		GachaResult.SetActive(false);
 
-        Dictionary<int, MasterGachaModel> masterGachaModelList = MasterGacha.GetMasterGachaList();
+		Dictionary<int, MasterGachaModel> masterGachaModelList = MasterGacha.GetMasterGachaList();
 		if (masterGachaModelList.Count == 0) {
 			UnityEngine.Debug.LogError("master_gachaのデータが取得できませんでした。マスターデータを確認してください。");
 			return;

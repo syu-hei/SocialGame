@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 [Serializable]
@@ -30,7 +30,7 @@ public static class MasterGacha
 		sqlDB.ExecuteQuery(query);
 	}
 
-    public static void Set(MasterGachaModel[] master_gacha_model_list)
+	public static void Set(MasterGachaModel[] master_gacha_model_list)
 	{
 		SqliteDatabase sqlDB = new SqliteDatabase("Service.db");
 		foreach (MasterGachaModel masterGachaModel in master_gacha_model_list) {
@@ -46,6 +46,7 @@ public static class MasterGacha
 			sqlDB.ExecuteNonQuery(query);
 		}
 	}
+
 	public static Dictionary<int, MasterGachaModel> GetMasterGachaList()
 	{
 		Dictionary<int, MasterGachaModel> masterGachaListModel = new Dictionary<int, MasterGachaModel>();
