@@ -1,7 +1,6 @@
 # SocialGame
 ## Client
 * Unity
-* SQLite
 ## Server
 * Laravel
 * Server/URL : https://github.com/syu-hei/Docker-Laravel
