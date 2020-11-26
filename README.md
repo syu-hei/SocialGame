@@ -1,6 +1,7 @@
 # SocialGame
 ## Client
-* Unity
+* Unity  
+* Version : 2018.3.12f1  
 ## Server
 * Laravel
 * Server/URL : https://github.com/syu-hei/Docker-Laravel
