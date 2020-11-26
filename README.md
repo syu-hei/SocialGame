@@ -1,4 +1,10 @@
 # SocialGame
+## Client
+* Unity
+* SQLite
+## Server
+* Laravel
+* Server/URL : https://github.com/syu-hei/Docker-Laravel
 ## Scenes
 ### TitleScene
 * 新規登録  
