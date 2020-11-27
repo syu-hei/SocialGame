@@ -22,7 +22,6 @@ public class ResponseObjects
 
 public class CommunicationManager : MonoBehaviour
 {
-	//接続先のサーバーのアドレスを設定
 	const string URL = "https://docker-laravel-201120.herokuapp.com/";
 	private const string ERROR_MASTER_DATA_UPDATE = "1";
 	private const string ERROR_DB_UPDATE = "2";
@@ -37,7 +36,6 @@ public class CommunicationManager : MonoBehaviour
 		yield return unityWebRequest.SendWebRequest();
 
 		if (!string.IsNullOrEmpty(unityWebRequest.error)) {
-			//エラー
 			UnityEngine.Debug.LogError(unityWebRequest.error);
 			if (unityWebRequest.error == "Cannot resolve destination host") {
 				UnityEngine.Debug.LogError("CommunicationManagerクラスのURLまたはエンドポイントを正しく設定してください");
@@ -48,7 +46,6 @@ public class CommunicationManager : MonoBehaviour
 		UnityEngine.Debug.Log("レスポンス : " + text);
 
 		if (text.All(char.IsNumber)) {
-			//エラーの場合
 			switch (text) {
 				case ERROR_MASTER_DATA_UPDATE:
 					UnityEngine.Debug.Log("マスターデータを更新します。");
@@ -78,7 +75,6 @@ public class CommunicationManager : MonoBehaviour
 			if (responseObjects.master_data_version != 0) {
 				LocalDataManager.SetMasterDataVersion(responseObjects.master_data_version);
 			}
-			//SQLiteへ保存
 			if (!string.IsNullOrEmpty(responseObjects.user_profile.user_id)) {
 				UserProfile.Set(responseObjects.user_profile);
 			}
