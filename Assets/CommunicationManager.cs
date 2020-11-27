@@ -41,7 +41,6 @@ public class CommunicationManager : MonoBehaviour
 				UnityEngine.Debug.LogError("CommunicationManagerクラスのURLまたはエンドポイントを正しく設定してください");
 			}
 		}
-		//レスポンスを取得
 		string text = unityWebRequest.downloadHandler.text;
 		UnityEngine.Debug.Log("レスポンス : " + text);
 
