@@ -26,7 +26,6 @@ public class GachaItem : MonoBehaviour
 
 	void Start()
 	{
-		//Resourcesから画像を読み込む場合
 		Sprite sprite = Resources.Load<Sprite>(masterGachaModel.banner_id);
 		if (sprite == null) {
 			UnityEngine.Debug.LogError("ガチャバナーの画像がありません。");
@@ -52,7 +51,6 @@ public class GachaItem : MonoBehaviour
 		descriptionLabel.text = masterGachaModel.description;
 	}
 
-	//ガチャをひくボタンをタップで呼ばれる関数
 	public void PressEvent()
 	{
 		Action action = () => {
