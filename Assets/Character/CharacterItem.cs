@@ -21,7 +21,6 @@ public class CharacterItem : MonoBehaviour
 			return;
 		}
 
-		//Resourcesから画像を読み込む場合
 		Sprite characterSprite = Resources.Load<Sprite>(masterCharacterModel.asset_id);
 		if (characterSprite == null) {
 			UnityEngine.Debug.LogError("キャラクターの画像を設定してください。");
