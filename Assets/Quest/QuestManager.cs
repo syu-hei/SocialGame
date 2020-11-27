@@ -32,9 +32,7 @@ public class QuestManager : MonoBehaviour
 	Text resultText;
 
 	private UserProfileModel userProfileModel;
-	//スコア計算用
 	private int score = 0;
-	//クリアタイム計算用
 	private float time = 0;
 
 	void Start()
@@ -63,12 +61,10 @@ public class QuestManager : MonoBehaviour
 			return;
 		}
 
-		//クリアタイム計算
 		time += Time.deltaTime * 100;
 
 		if (Input.GetMouseButton(0)) {
 			questSlider.value -= 1;
-			//スコア計算
 			score += 100 * UnityEngine.Random.Range(1, 100);
 			enemyAnimation.Play();
 		}
