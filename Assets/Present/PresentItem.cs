@@ -20,7 +20,6 @@ public class PresentItem : MonoBehaviour
 
 	void Start()
 	{
-		//商品Imageの設定
 		if (userPresentModel.item_type == (int)UserPresent.ItemType.Crystal || userPresentModel.item_type == (int)UserPresent.ItemType.CrystalFree) {
 			typeSprite.sprite = Resources.Load<Sprite>("Crystal");
 		} else if (userPresentModel.item_type == (int)UserPresent.ItemType.FriendCoin) {
