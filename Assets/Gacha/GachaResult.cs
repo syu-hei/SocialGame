@@ -37,12 +37,10 @@ public class GachaResult : MonoBehaviour
 
 		characterNameLabel.text = masterCharacterModel.character_name;
 
-		//レアリティの制御
 		rarity1.SetActive(true);
 		rarity2.SetActive(1 < masterCharacterModel.rarity);
 		rarity3.SetActive(2 < masterCharacterModel.rarity);
 
-		//Resourcesから画像を読み込む場合
 		Sprite sprite = Resources.Load<Sprite>("big_" + masterCharacterModel.asset_id);
 		if (sprite == null) {
 			UnityEngine.Debug.LogError("キャラクターの画像がありません。");
