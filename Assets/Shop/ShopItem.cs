@@ -25,9 +25,7 @@ public class ShopItem : MonoBehaviour
 			UnityEngine.Debug.LogError("TitleSceneを起動してユーザー登録を行ってください。");
 			return;
 		}
-		//決済処理を行う
 
-		//決済処理後
 		Action action = () => {
 			GameObject shopManagerObject = GameObject.Find("ShopManager");
 			if (shopManagerObject == null) {
