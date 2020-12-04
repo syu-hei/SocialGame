@@ -4,7 +4,7 @@
 * Version : 2018.3.12f1  
 ## Server
 * Laravel
-* Server/URL : https://github.com/syu-hei/Docker-Laravel
+* Docker-Laravel : https://github.com/syu-hei/Docker-Laravel
 ## Scenes
 ### TitleScene
 * 新規登録  
