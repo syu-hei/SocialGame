@@ -3,7 +3,6 @@
 * Unity  
 * Version : 2018.3.12f1  
 ## Server
-* Laravel
 * Docker-Laravel : https://github.com/syu-hei/Docker-Laravel
 ## Scenes
 ### TitleScene
