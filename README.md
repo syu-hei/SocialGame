@@ -1,7 +1,6 @@
 # SocialGame
 ## Client
-* Unity  
-* Version : 2018.3.12f1  
+* Unity (Version : 2018.3.12f1)
 * SQLite  
 ## Server
 * Docker-Laravel : https://github.com/syu-hei/Docker-Laravel
